@@ -18,5 +18,13 @@ Rails.application.routes.draw do
     post "/products" => "products#create"
     patch "/products/:id" => "products#update"
     delete "/products/:id" => "products#destroy"
+
+    # events
+    get "/events" => "events#index"
+    get "/events/:id" => "events#show"
+
+    # event_users
+    post "/event_users" => "event_users#create"
+    delete "/event_users/:id" => "event_users#destroy"
   end
 end

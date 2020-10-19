@@ -1,0 +1,8 @@
+{
+  id: event.id,
+  state: event.state,
+  city: event.city,
+  name: event.name,
+  date: event.date,
+  address: event.address,
+}
