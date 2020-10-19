@@ -6,10 +6,17 @@ Rails.application.routes.draw do
   namespace :api do
     post "/sessions" => "sessions#create" #login
 
+    # users
     get "/users" => "users#index"
     get "/users/:id" => "users#show"
     post "/users" => "users#create"
     patch "/users/:id" => "users#update"
     delete "/users/:id" => "users#destroy"
+
+    # products
+    get "/products/:id" => "products#show"
+    post "/products" => "products#create"
+    patch "/products/:id" => "products#update"
+    delete "/products/:id" => "products#destroy"
   end
 end
