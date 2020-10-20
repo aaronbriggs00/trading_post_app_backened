@@ -2,7 +2,7 @@ json = render partial: "user.json.jb", locals: { user: @user }
 json[:products] = @user.products.map do |product|
   render partial: "api/products/product.json.jb", locals: { product: product }
 end
-json[:events] = @user.events.map do |event|
+json[:events] = @user.events.where("date >= ?", Time.now.to_datetime).order("date ASC").map do |event|
   render partial: "api/events/event.json.jb", locals: { event: event }
 end
 json[:categories] = @user.categories.uniq.map do |category|

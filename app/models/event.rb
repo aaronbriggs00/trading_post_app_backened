@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_many :event_users
+  has_many :event_users, dependent: :destroy
   has_many :users, through: :event_users
 
   scope :name_search, -> (search_term) { where("name iLIKE ?", "%#{search_term}%")}
