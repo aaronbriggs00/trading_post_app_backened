@@ -3,7 +3,7 @@ class Api::ProductsController < ApplicationController
   before_action :authenticate_user, except: [:show]
 
   def create
-    product = Product.new(
+    @product = Product.new(
       title: params[:title],
       price: params[:price],
       price_negotiable: params[:price_negotiable],
@@ -14,8 +14,8 @@ class Api::ProductsController < ApplicationController
       per_unit_pricing: params[:per_unit_pricing],
       unit: params[:unit]
     )
-    if product.save #happy
-      render json: { message: "product created successfully" }, status: :created
+    if @product.save #happy
+      render "show.json.jb", status: :created
     else #sad
       render json: { errors: product.errors.full_messages }, status: :bad_request
     end

@@ -7,7 +7,4 @@
   bio: user.bio,
   representation: user.representation,
   email: user.email,
-  products: user.products,
-  categories: user.categories.uniq,
-  events: user.events
 }

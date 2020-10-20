@@ -1,4 +1,5 @@
 {
+  id: product.id,
   title: product.title,
   price: product.price,
   price_negotiable: product.price_negotiable,

@@ -1,2 +1,13 @@
-json = render partial: "event.json.jb", locals: { event: @event }
+json = render partial: "event.json.jb", locals: {event: @event}
+json[:users] = @event.users.map do |user|
+  user_hash = render partial: "api/users/user.json.jb", locals: {user: user}
+  user_hash[:products] = user.products.map do |product|
+    render partial: "api/products/product.json.jb", locals: {product: product}
+  end
+  user_hash[:categories] = user.categories.uniq.map do |category|
+    render partial: "api/users/category.json.jb", locals: {category: category}
+  end
+  user_hash
+end
+
 json
