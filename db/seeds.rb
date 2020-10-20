@@ -36,3 +36,6 @@
 # Category.create(title: "Wild harvested forest products: mushrooms, medicinal herbs, edible fruits and nuts, etc.")
 
 # Event.create(state: "IL", city: "Chicago", name: "63rd Street Farmer's Market",date: "2020-12-02", address: "875 N Michigan Ave, Chicago, IL 60611")
+# Event.create(state: "WI", city: "Milwuakee", name: "Brady Street Farmer's Market",date: "2019-12-02", address: "1250 W Wisconsin Ave, Milwaukee, WI 53233")
+# Event.create(state: "WI", city: "Milwuakee", name: "Brady Street Farmer's Market",date: "2020-12-02", address: "1250 W Wisconsin Ave, Milwaukee, WI 53233")
+# Event.create(state: "WI", city: "Milwuakee", name: "Brady Street Farmer's Market",date: "2021-12-02", address: "1250 W Wisconsin Ave, Milwaukee, WI 53233")

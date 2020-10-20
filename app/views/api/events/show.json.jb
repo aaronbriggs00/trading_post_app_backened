@@ -1,1 +1,2 @@
-render partial: "event.json.jb", locals: { event: @event }
+json = render partial: "event.json.jb", locals: { event: @event }
+json

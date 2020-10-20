@@ -5,4 +5,5 @@
   name: event.name,
   date: event.date,
   address: event.address,
+  users: event.users
 }
