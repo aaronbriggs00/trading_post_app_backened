@@ -5,6 +5,5 @@
   company: user.company,
   city: user.city,
   bio: user.bio,
-  representation: user.representation,
   email: user.email,
 }

@@ -15,7 +15,6 @@ class Api::UsersController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       company: params[:company],
-      representation: params[:representation],
       bio: params[:bio],
       city: params[:city],
       email: params[:email],
@@ -33,9 +32,9 @@ class Api::UsersController < ApplicationController
     @user.first_name = params[:first_name] || @user.first_name
     @user.last_name = params[:last_name] || @user.last_name
     @user.company = params[:company] || @user.company
-    @user.representation = params[:representation] || @user.representation
     @user.bio = params[:bio] || @user.bio
     @user.email = params[:email] || @user.email
+    @user.password_digest = params[:password_digest] || @user.password_digest
     if @user.save #happy
       render "show.json.jb"
     else #sad
