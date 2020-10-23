@@ -7,14 +7,14 @@ json[:users] = @event.users.map do |user|
   user_hash[:categories] = user.categories.uniq.map do |category|
     render partial: "api/users/category.json.jb", locals: {category: category}
   end
+  user_hash
 end
 if current_user
   if current_user.event_users.map{|event_user|event_user.event_id}.include?(@event.id)
     json[:current_user_attending] = true
+  else
+    json[:current_user_attending] = false
   end
-  # if current_user.event_users.where('event_id = ?', @event.id)
-  #   json[:current_user_attending] = true
-  # end
 end
 
 json

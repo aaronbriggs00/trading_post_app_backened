@@ -16,7 +16,7 @@ class Api::UsersController < ApplicationController
       last_name: params[:last_name],
       company: params[:company],
       bio: params[:bio],
-      city: params[:city],
+      address: params[:address],
       email: params[:email],
       password: params[:password],
       password_confirmation: params[:password_confirmation],
@@ -32,6 +32,7 @@ class Api::UsersController < ApplicationController
     @user.first_name = params[:first_name] || @user.first_name
     @user.last_name = params[:last_name] || @user.last_name
     @user.company = params[:company] || @user.company
+    @user.address = params[:address] || @user.address
     @user.bio = params[:bio] || @user.bio
     @user.email = params[:email] || @user.email
     @user.password_digest = params[:password_digest] || @user.password_digest

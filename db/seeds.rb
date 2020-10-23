@@ -1,11 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-
 # Category.create(title: "Baked goods")
 # Category.create(title: "Crafts and/or woodworking items")
 # Category.create(title: "Eggs")
@@ -39,5 +31,5 @@
 # Event.create(state: "WI", city: "Milwuakee", name: "Brady Street Farmer's Market",date: "2019-12-02", address: "1250 W Wisconsin Ave, Milwaukee, WI 53233")
 # Event.create(state: "WI", city: "Milwuakee", name: "Brady Street Farmer's Market",date: "2020-12-02", address: "1250 W Wisconsin Ave, Milwaukee, WI 53233")
 # Event.create(state: "WI", city: "Milwuakee", name: "Brady Street Farmer's Market",date: "2021-12-02", address: "1250 W Wisconsin Ave, Milwaukee, WI 53233")
-Event.create(state: "NY", city: "Albany", name: "Very Old Market",date: "2001-12-02", address: "Hours or services may differ
-  State St. and, Washington Ave, Albany, NY 12224")
+# Event.create(state: "NY", city: "Albany", name: "Very Old Market",date: "2001-12-02", address: "Hours or services may differ
+#   State St. and, Washington Ave, Albany, NY 12224")

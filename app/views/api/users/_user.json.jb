@@ -3,7 +3,7 @@
   first_name: user.first_name,
   last_name: user.last_name,
   company: user.company,
-  city: user.city,
+  address: user.address,
   bio: user.bio,
   email: user.email,
 }
