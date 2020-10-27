@@ -14,8 +14,8 @@ class Api::EventUsersController < ApplicationController
     end
   end
   def destroy
-    event_user = EventUser.find(params[:id])
-    event_user.destroy
+    event_user = EventUser.where(event_id: params[:id]).where(user_id: current_user.id)
+    event_user[0].destroy
     render json: { message: "event_user destroyed" }
   end
 end
