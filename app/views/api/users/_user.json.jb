@@ -6,4 +6,5 @@
   address: user.address,
   bio: user.bio,
   email: user.email,
+  image_url: user.image_url
 }

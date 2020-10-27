@@ -10,7 +10,7 @@ class Api::EventUsersController < ApplicationController
     if @event_user.save #happy
       render "show.json.jb"
     else #sad
-      render json: { errors: event_user.errors.full_messages }, status: :bad_request
+      render json: { errors: @event_user.errors.full_messages }, status: :bad_request
     end
   end
   def destroy

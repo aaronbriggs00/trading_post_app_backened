@@ -17,7 +17,7 @@ class Api::ProductsController < ApplicationController
     if @product.save #happy
       render "show.json.jb", status: :created
     else #sad
-      render json: { errors: product.errors.full_messages }, status: :bad_request
+      render json: { errors: @product.errors.full_messages }, status: :bad_request
     end
   end
   def show
@@ -37,7 +37,7 @@ class Api::ProductsController < ApplicationController
     if @product.save #happy
       render "show.json.jb"
     else #sad
-      render json: { errors: product.errors.full_messages }, status: :bad_request
+      render json: { errors: @product.errors.full_messages }, status: :bad_request
     end
   end
   def destroy

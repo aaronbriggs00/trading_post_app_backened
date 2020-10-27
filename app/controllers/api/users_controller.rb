@@ -15,6 +15,7 @@ class Api::UsersController < ApplicationController
       first_name: params[:first_name],
       last_name: params[:last_name],
       company: params[:company],
+      image_url: params[:image_url],
       bio: params[:bio],
       address: params[:address],
       email: params[:email],
@@ -34,12 +35,13 @@ class Api::UsersController < ApplicationController
     @user.company = params[:company] || @user.company
     @user.address = params[:address] || @user.address
     @user.bio = params[:bio] || @user.bio
+    @user.image_url = params[:image_url] || @user.image_url
     @user.email = params[:email] || @user.email
-    @user.password_digest = params[:password_digest] || @user.password_digest
+    # @user.password_digest = params[:password_digest] || @user.password_digest
     if @user.save #happy
       render "show.json.jb"
     else #sad
-      render json: { errors: @product.errors.full_messages }, status: :unprocessable_entity
+      render json: { errors: @user.errors.full_messages }, status: :unprocessable_entity
     end
   end
   def destroy
