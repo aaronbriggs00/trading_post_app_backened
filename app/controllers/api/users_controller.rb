@@ -37,7 +37,9 @@ class Api::UsersController < ApplicationController
     @user.bio = params[:bio] || @user.bio
     @user.image_url = params[:image_url] || @user.image_url
     @user.email = params[:email] || @user.email
-    # @user.password_digest = params[:password_digest] || @user.password_digest
+    if params[:password]
+      @user.password = params[:password] || @user.password
+    end
     if @user.save #happy
       render "show.json.jb"
     else #sad
