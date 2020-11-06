@@ -35,7 +35,11 @@ class Api::UsersController < ApplicationController
     @user.company = params[:company] || @user.company
     @user.address = params[:address] || @user.address
     @user.bio = params[:bio] || @user.bio
-    @user.image_url = params[:image_url] || @user.image_url
+    if params[:image]
+      response = Cloudinary::Uploader.upload(params[:image], resource_type: :auto)
+      cloudinary_url = response["secure_url"]
+      @user.image_url = cloudinary_url|| @user.image_url
+    end
     @user.email = params[:email] || @user.email
     if params[:password]
       @user.password = params[:password] || @user.password
