@@ -3,7 +3,6 @@
   title: product.title,
   price: product.price,
   price_negotiable: product.price_negotiable,
-  category: product.category.title,
   description: product.description,
   image_url: product.image_url,
   user_id: product.user_id,

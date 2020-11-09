@@ -1,2 +1,3 @@
 json = render partial: "product.json.jb", locals: { product: @product }
+json[:category] = render partial: "api/users/category.json.jb", locals: { category: @product.category }
 json
