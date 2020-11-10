@@ -1,8 +1,8 @@
 class Api::EventsController < ApplicationController
   def index
-    # MarketGeneratorJob.set(wait: 1.month).perform_later()
-    today = Time.now.to_datetime
-    @events = Event.all.where("date >= ?", Time.now.to_datetime).order("date ASC")
+    # MarketGeneratorJob.perform_later()
+    today = 
+    @events = Event.all
     if params[:search_name]
       @events = @events.name_search(params[:search_name])
     end
