@@ -8,4 +8,5 @@
   user_id: product.user_id,
   per_unit_pricing: product.per_unit_pricing,
   unit: product.unit,
+  category: product.category.title
 }

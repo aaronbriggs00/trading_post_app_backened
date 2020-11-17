@@ -61,13 +61,13 @@ class MarketGeneratorJob < ApplicationJob
       }
       day = days[schedule.split[3][0..2]]
       # date1year = schedule.split[0][6..9]
-      date1year = 2021
+      date1year = 2020
       date1year = schedule.split[0][6..9]
-      date1month = schedule.split[0][0..1]
+      date1month = 11
       date1day = schedule.split[0][3..4]
       # date2year = schedule.split[2][6..9]
       date2year = 2021
-      date2month = schedule.split[2][0..1]
+      date2month = 1
       date2day = schedule.split[2][3..4]
       date1 = Date.parse("#{date1year}-#{date1month}-#{date1day}")
       date2 = Date.parse("#{date2year}-#{date2month}-#{date2day}")

@@ -1,4 +1,6 @@
 json = @events.map do |event|
-  render partial: "event.json.jb", locals: { event: event }
+  event_hash = render partial: "event.json.jb", locals: { event: event }
+  event_hash[:users] = event.users.length
+  event_hash
 end
 json
