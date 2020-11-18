@@ -28,10 +28,24 @@ class MarketGeneratorJob < ApplicationJob
     "https://images.squarespace-cdn.com/content/v1/5bf347a3a9e028260bf61642/1574867763208-08TKAGTTVUFRLEMX6YQ2/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/20191116-IMG_5153+%281%29.jpg",
     "https://ioby.org/sites/default/files/styles/gallery_large/public/cityseed%20cover%20photo.jpeg?itok=a8I4j4To",
     "https://patch.com/img/cdn/users/22845980/2016/04/raw/201604571a732e27ade.jpg",
+    "https://images.unsplash.com/photo-1578167637694-5a5c45d5a322?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2767&q=80",
+    "https://images.unsplash.com/photo-1501523460185-2aa5d2a0f981",
+    "https://images.unsplash.com/photo-1488459716781-31db52582fe9",
+    "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "https://images.unsplash.com/photo-1591003659159-54a5579d395e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
+    "https://unsplash.com/photos/NvdscovENOY",
+    "https://unsplash.com/photos/aRrCf_OwoCM",
+    "https://images.unsplash.com/photo-1598063414123-d8fd7fb018b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "https://images.unsplash.com/photo-1573894158867-3b048fcb012d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
+    "https://images.unsplash.com/photo-1603415188058-6e8a67b445c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1611&q=80",
+    "https://images.unsplash.com/photo-1588005011879-5b79164c0cbc?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1953&q=80",
+    "https://images.unsplash.com/photo-1573481078935-b9605167e06b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1951&q=80",
+    "https://images.unsplash.com/photo-1556645427-dd4cb34092a0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "https://images.unsplash.com/photo-1601333057326-afb9e17bb8b3?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1570&q=80",
 
     ]
     markets = []
-    zips = [60613]
+    zips = [94061]
     zips.each do |zip|
       temp_markets = []
       response = HTTP.get("https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=#{zip}").parse["results"]
@@ -49,6 +63,7 @@ class MarketGeneratorJob < ApplicationJob
       market["marketname"] = new_name.join(" ")
     end
     markets.uniq.each do |market|
+      puts market["Schedule"]
       schedule = market["Schedule"]
       days = {
         "Sun" => 0,
@@ -62,15 +77,16 @@ class MarketGeneratorJob < ApplicationJob
       day = days[schedule.split[3][0..2]]
       # date1year = schedule.split[0][6..9]
       date1year = 2020
-      date1year = schedule.split[0][6..9]
       date1month = 11
-      date1day = schedule.split[0][3..4]
+      date1day = 18 #schedule.split[0][3..4]
       # date2year = schedule.split[2][6..9]
-      date2year = 2021
-      date2month = 1
-      date2day = schedule.split[2][3..4]
+      date2year = 2020
+      date2month = 12 #schedule.split[0][3..4]
+      date2day = 18
       date1 = Date.parse("#{date1year}-#{date1month}-#{date1day}")
+      puts date1
       date2 = Date.parse("#{date2year}-#{date2month}-#{date2day}")
+      puts date2
       dates = (date1..date2).to_a.select {|k| day == k.wday}
       corrected_dates = dates.map do |date|
         "#{date.year}-#{date.mon}-#{date.mday}"
@@ -78,12 +94,12 @@ class MarketGeneratorJob < ApplicationJob
       corrected_dates.each do |date|
         if Event.where("date = ?", date).where("name = ?", market["marketname"]).length < 1
           ### this allows you to use the same image for every market of the same name ###
-          if Event.where("name = ?", market["marketname"]).length > 1
+          if Event.where("name = ?", market["marketname"]).length >= 1
             image_url = Event.where("name = ?", market["marketname"]).first.image_url
-            Event.create(date: date, address: market["Address"], name: market["marketname"], image_url: image_url)
+            Event.create(date: date, address: market["Address"], name: market["marketname"], image_url: image_url, products: market["Products"], website: market["GoogleLink"])
           else
             image_url = images[rand(0..images.length)]
-            Event.create(date: date, address: market["Address"], name: market["marketname"], image_url: image_url)
+            Event.create(date: date, address: market["Address"], name: market["marketname"], image_url: image_url, products: market["Products"],website: market["GoogleLink"])
           end
         end
       end
