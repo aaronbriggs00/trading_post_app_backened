@@ -1,6 +1,5 @@
 class Api::EventsController < ApplicationController
   def index
-    # MarketGeneratorJob.perform_later()
     @events = Event.all
     if params[:current] == "yes"
       today = Time.now.to_datetime
@@ -20,5 +19,10 @@ class Api::EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     render "show.json.jb"
+  end
+  def seed
+    zip = params[:zip]
+    MarketGeneratorJob.perform_later(zip)
+    render json: "working on #{zip}"
   end
 end

@@ -2,7 +2,7 @@ require 'time'
 class MarketGeneratorJob < ApplicationJob
   queue_as :default
 
-  def perform(*args)
+  def perform(zip)
     images = [
      "https://images.unsplash.com/photo-1526399743290-f73cb4022f48?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80",
      "https://images.unsplash.com/photo-1550989460-0adf9ea622e2?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjF9",
@@ -45,7 +45,7 @@ class MarketGeneratorJob < ApplicationJob
 
     ]
     markets = []
-    zips = [94061]
+    zips = [zip]
     zips.each do |zip|
       temp_markets = []
       response = HTTP.get("https://search.ams.usda.gov/farmersmarkets/v1/data.svc/zipSearch?zip=#{zip}").parse["results"]
@@ -76,13 +76,13 @@ class MarketGeneratorJob < ApplicationJob
       }
       day = days[schedule.split[3][0..2]]
       # date1year = schedule.split[0][6..9]
-      date1year = 2020
-      date1month = 11
-      date1day = 18 #schedule.split[0][3..4]
-      # date2year = schedule.split[2][6..9]
-      date2year = 2020
-      date2month = 12 #schedule.split[0][3..4]
-      date2day = 18
+      date1year = Time.now.year
+      date1month = Time.now.month
+      date1day = Time.now.day #schedule.split[0][3..4]
+      date2 = Time.now + 1.month
+      date2year = date2.year
+      date2month = date2.month
+      date2day = date2.day
       date1 = Date.parse("#{date1year}-#{date1month}-#{date1day}")
       puts date1
       date2 = Date.parse("#{date2year}-#{date2month}-#{date2day}")

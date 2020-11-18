@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
     # events
     get "/events" => "events#index"
+    get "/events/seed"
     get "/events/:id" => "events#show"
 
     # event_users
