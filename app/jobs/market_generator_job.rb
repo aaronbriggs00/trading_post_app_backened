@@ -34,7 +34,7 @@ class MarketGeneratorJob < ApplicationJob
     "https://images.unsplash.com/photo-1533900298318-6b8da08a523e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "https://images.unsplash.com/photo-1591003659159-54a5579d395e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1400&q=80",
     "https://unsplash.com/photos/NvdscovENOY",
-    "https://unsplash.com/photos/aRrCf_OwoCM",
+    "https://images.unsplash.com/photo-1590236806810-fbfd00588c32?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1951&q=80",
     "https://images.unsplash.com/photo-1598063414123-d8fd7fb018b2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
     "https://images.unsplash.com/photo-1573894158867-3b048fcb012d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80",
     "https://images.unsplash.com/photo-1603415188058-6e8a67b445c7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1611&q=80",
